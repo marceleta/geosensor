@@ -1,0 +1,12 @@
+{% extends 'modelo.html' %}
+
+{%block titulo%} Receber arquivos | GeoSensor {%endblock%}
+{%block content%}
+<div>
+    <form method="POST" enctype="multipart/form-data" accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Enviar">
+    </form>
+</div>
+{%endblock%}

@@ -1,0 +1,44 @@
+{% extends 'modelo.html' %}
+
+{%block titulo%} Imagens | GeoSensor {%endblock%}
+{%block content%}
+<div class="container position-relative">
+    <div class="card mt-1">
+        <div class="card-body">
+            <h4>Imagens</h4>
+            <a class="btn btn-primary" href="{% url 'imagem:adicionar' %}">Adicionar</a>
+        </div>
+    </div>
+    {% if mensagem != ''%}
+    <div class="alert alert-success alert-dismissible fade show" rol="alert">
+        <strong>{{mensagem}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endif%}
+    <div>
+        <table class="table">
+            <thead class="bg-dark text-light">
+                <tr>
+                    <th>#</th>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>           
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in lista %}
+                    <tr>
+                        <th>{{item.pk}}</th>
+                        <th><img src="/media/{{item.img.name}}" width="40" height="40"></th>
+                        <th>{{item.nome}}</th>
+                        <th>{{item.descricao}}</th>
+                    </tr>
+                {%empty%}
+                    <li>Não há imagens cadastrados</li>
+                {%endfor%}
+            </tbody>            
+        </table>
+    </div>
+<div>
+
+{%endblock%}

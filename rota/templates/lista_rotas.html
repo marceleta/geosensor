@@ -1,0 +1,47 @@
+<div class="">
+    <table class="table table-hover p-0">
+        <tbody>
+            {% for item in lista %}
+            <tr class="m-0">
+                <th class="marcador text-center" style="width: 100px;">{{item.trator.descricao}}</th>
+                <th class="marcador text-center" style="width: 100px;">{{item.data|date:"d/m/y"}}</th>
+                <th class="marcador text-center" style="width: 100px;">{{item.h_inicio|date:"H:i"}}</th>
+                <th class="marcador text-center" style="width: 100px;">{{item.h_final|date:"H:i"}}</th>
+                <th class="marcador text-center" style="width: 125px;">{{item.horas_trabalhadas|date:"H:i"}}</th>
+                <th class="marcador text-center" style="width: 125px;">{{item.maior_velocidade|floatformat:2}}</th>
+                <th class="marcador text-center" style="width: 125px;">{{item.velocidade_media|floatformat:2}}</th>
+                <th class="marcador text-center" style="width: 100px;">
+                    <a type="'button" class="btn btn-success"
+                        href="{% url 'trabalho:mapa'%}?trabalho={{item.pk}}&hinicio={{hinicio}}&hfinal={{hfinal}}">Mapa</a>
+
+                </th>
+            </tr>
+            {%empty%}
+            <li>Não há trabalhos</li>
+            {%endfor%}
+        </tbody>
+    </table>
+    <div>
+        {% if lista.has_other_pages %}
+        <ul class="pagination">
+            {% if lista.has_previous %}
+            <li><a href="?page={{ lista.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in lista.paginator.page_range %}
+            {% if lista.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if lista.has_next %}
+            <li><a href="?page={{ lista.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+</div>

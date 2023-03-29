@@ -1,0 +1,18 @@
+{% extends 'modelo.html' %}
+{% load widget_tweaks %}
+{%block titulo%} Adicionar Area | GeoSensor {%endblock%}
+{%block content%}
+<div class="card position-relative">    
+    <div class="card-body position-absolute top-0 start-50 translate-middle-x">
+        <h4>Adicionar Area</h4>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="arquivo">Arquivo json com os pontos que formam a area e as ruas</label>
+            {%render_field form.arquivo type='file' id='arquivo' class='form-control mt-2 w-50' %}        
+            <input class="btn btn-success mt-2" type="submit" value="Salvar">
+            <a class="btn btn-warning mt-2" href="{% url 'area:areas' %}">Cancelar</a>
+        </form>
+    </div>
+    
+</div>
+{%endblock%}

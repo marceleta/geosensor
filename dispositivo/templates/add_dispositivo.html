@@ -1,0 +1,43 @@
+{% extends 'modelo.html' %}
+{% load widget_tweaks %}
+{%block titulo%} Adicionar dispositivo | GeoSensor {%endblock%}
+{%block content%}
+<div class="container position-relative">
+    <div class="position-absolute top-50 start-50 translate-middle-x ">
+        <div class="card border-0">
+            <div class="card-body">
+                <h4>Adicionar Dispositivo</h4>
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <div class="col-auto">
+                    <label for="modelo" class="col-form-label">Modelo</label>
+                </div>
+                <div class="col-auto">
+                    {%render_field form.modelo class='form-control' id='modelo'%}
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="col-auto">
+                    <label for="mac" class="col-form-label">Mac</label>
+                </div>
+                <div>
+                    {%render_field form.mac class='form-control' id='mac'%}
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="col-auto">
+                    <label for="trator" class="col-form-label">Trator</label>
+                </div>
+                <div class="col-auto">
+                    {%render_field form.trator type='select' class='form-control' id='trator'%}
+                </div>
+            </div>
+            <input class="btn btn-success" type="submit" value="Salvar">
+            <a class="btn btn-warning" href="{% url 'dispositivo:dispositivos' %}">Cancelar</a>
+        </form>
+    </div>    
+</div>
+{%endblock%}

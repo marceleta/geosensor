@@ -1,0 +1,42 @@
+{% extends 'modelo.html' %}
+{%block titulo %}Dispositivos | GeoSensor{% endblock %}
+{%block content %}
+<div class="container">
+    <div class="card mt-1">
+        <div class="card-body">
+            <h4>Dispositivos</h4>
+            <a class="btn btn-primary" href="{% url 'dispositivo:adicionar' %}" >Adicionar</a>
+        </div>       
+    </div>
+    {%if mensagem != ''%}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{mensagem}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endif%}
+    <div>
+        <table class="table p-2">
+            <thead>
+                <tr class="bg-dark text-light">
+                    <th>Modelo</th>
+                    <th>Mac</th>
+                    <th>Trator</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in lista %}
+                    <tr>
+                        <th>{{item.modelo}}</th>
+                        <th>{{item.mac}}</th>
+                        <th>{{item.trator}}</th>
+                    </tr>
+                {%empty%}
+                    <li>Não há tratores cadastrados</li>
+                {%endfor%}
+            </tbody>
+                
+            
+        </table>
+    </div>
+</div>
+{% endblock %}

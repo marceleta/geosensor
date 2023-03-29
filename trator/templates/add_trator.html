@@ -1,0 +1,43 @@
+{% extends 'modelo.html' %}
+{% load widget_tweaks %}
+{%block titulo%} Adicionar Trator | GeoSensor {%endblock%}
+{%block content%}
+<div class="container position-relative">
+    <div class="position-absolute top-0 start-50 translate-middle-x">
+        <div class="card border-0">
+            <div class="card-body">
+                <h4>Adicionar Trator</h4>
+            </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}            
+                <div class="mb-3">
+                    <div class="col-auto">
+                        <label class="col-form-label" for="imagem">Imagem:</label>
+                    </div>
+                    <div class="col-auto">
+                        {% render_field form.imagem class='form-control' id='imagem' %}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="col-auto">
+                        <label class="col-form-label" for="descricao">Descrição:</label>
+                    </div>
+                    <div class="col-auto">
+                        {% render_field form.descricao class='form-control' id='descricao' %}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="col-auto">
+                        <label for="modelo" class="col-form-label">Modelo:</label>
+                    </div>
+                    <div class="col-auto">
+                        {% render_field form.modelo class='form-control' id='modelo' %}
+                    </div>
+                </div>
+                <input class="btn btn-success" type="submit" value="Salvar">
+                <a class="btn btn-warning" href="{% url 'trator:tratores' %}">Cancelar</a>
+        </form>
+    </div>    
+</div>
+{%endblock%}

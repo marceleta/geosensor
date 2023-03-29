@@ -1,0 +1,71 @@
+{% extends 'modelo.html' %}
+{% load static%}
+{% load widget_tweaks %}
+{%block titulo%} Trabalhos | GeoSensor {%endblock%}
+
+{%block content%}
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body">
+            <h4>Trabalhos</h4>
+        </div>
+    </div>
+    <div class="jumbotron border boder-1 m-1 cinza">
+        <div class="container">
+            <div class="row m-3 mx-2">
+              <form 
+                  id="form"
+                  method="GET"
+                  class="row gy-2 gx-3 align-items-center p-0"
+                  data-urlajax="{% url 'trabalho:json' %}">
+  
+                  <div class="row g-3 align-items-center p-0 mt-0">
+                        <div class="col-auto">
+                          <label for="data" class="col-form-label mr-0">Data:</label>
+                        </div>
+                        <div class="col-auto">
+                          {%render_field form.data type="date" id="data" class="form-control tamanho30" style='width=30px;' %}
+                        </div>
+                      <div class="col-auto">
+                          <label for="trator" class="col-form-label">Trator:</label>
+                      </div>
+                      <div class="col-auto">
+                          {%render_field form.trator id="trator" type="select" class="form-control" %}
+                      </div>
+                      <div class="col-auto">
+                          <label for="hinicio" class="col-form-label">H. início:</label>
+                      </div>
+                      <div class="col-auto">
+                          {%render_field form.h_inicio id="hinicio" type="time" class="form-control" style="width: 100px;" %}
+                      </div>
+                      <div class="col-auto">
+                          <label for="hfinal" class="col-form-label">H. final:</label>
+                      </div>
+                      <div class="col-auto">
+                          {%render_field form.h_final id="hfinal" type="time" class="form-control" style="width: 100px;" %}
+                      </div>
+                      <div class="col-auto">
+                          <a id="pesquisa" type="button" class="btn btn-primary btn-sm">Pesquisar</a>
+                      </div>
+                      <div class="col-auto">
+                          <a id="limpar" type="button" class="btn btn-warning btn-sm">Limpar</a>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          </div>
+      </div>
+  <div class="mx-3">
+      {% include 'head_trabalhos.html'%}
+      <div id="trabalhos">
+          {% include 'lista_trabalhos.html' %}
+      </div>        
+  </div>
+
+</div>
+
+{%endblock%}
+{%block extra_js%}
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/trabalho_tabela.js' %}"></script>
+{%endblock%}

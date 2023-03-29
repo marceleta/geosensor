@@ -1,0 +1,19 @@
+{% extends 'modelo.html' %}
+{% load static %}
+
+{%block titulo%} Mapa área | GeoSensor{%endblock%}
+
+{%block extra_css%}
+    <link rel="stylesheet" href="{% static 'css/mapa.css' %}">
+{%endblock%}
+
+{%block content%}
+    <div id="map" class="mt-2"></div>
+{% endblock%}
+
+{% block extra_js %}
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing,geometry&key=AIzaSyDAEEOQ9Xiop_Ww7R5LT0CvJoPFoJvM1rg"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/area_adicionar.js' %}" ></script>
+   
+{%endblock%}

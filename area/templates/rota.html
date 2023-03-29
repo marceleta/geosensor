@@ -1,0 +1,41 @@
+{% extends 'modelo.html' %}
+
+{%block titulo%}Areas | GeoSensor{%endblock%}
+
+{%block content%}
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body">
+            <h4>Rota</h4>
+            <a class="btn btn-primary" href="{% url 'area:selecao_trabalho'%}">Adicionar pelo mapa</a>
+        </div>        
+    </div>
+    <div>
+        <table class="table">
+            <thead class="text-light">
+                <tr class="bg-dark">
+                    <th class="col-1">#</th>
+                    <th class="col-2">Nome</th>
+                    <th class="col-7">Descrição</th>
+                    <th class="col-1">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in lista %}
+                    <tr>
+                        <th>{{item.pk}}</th>
+                        <th>{{item.nome}}</th>
+                        <th>{{item.descricao}}</th>
+                        <th class="w-25">
+                            <a class="btn btn-success" type="button"  
+                                href="{% url 'area:selecao_trabalho' %}?area={{item.pk}}">Mapa</button>
+                        </th>
+                    </tr>
+                {%empty%}
+                    <li>Não há areas cadastradas</li>
+                {%endfor%}
+            </tbody>        
+        </table>
+    </div>
+</div>
+{% endblock%}

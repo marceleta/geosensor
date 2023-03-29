@@ -1,0 +1,49 @@
+<div class="table-responsive-sm">
+    <table class="table table-hover table-sm table-striped">
+        <tbody>
+            {% for item in lista %}
+            <tr style="line-height: 25px;">
+                <th class=" text-center" style="width: 100px; height: 41px;">{{item.trator.descricao}}</th>
+                <th class=" text-center" style="width: 100px; height: 41px;">{{item.data|date:"d/m/y"}}</th>
+                <th class=" text-center" style="width: 100px; height: 41px;">{{item.h_inicio|date:"H:i"}}</th>
+                <th class=" text-center" style="width: 100px; height: 41px;">{{item.h_final|date:"H:i"}}</th>
+                <th class=" text-center" style="width: 125px; height: 41px;">{{item.horas_trabalhadas|date:"H:i"}}</th>
+                <th class=" text-center" style="width: 125px; height: 41px;">{{item.maior_velocidade|floatformat:2}}</th>
+                <th class=" text-center" style="width: 125px; height: 41px;">{{item.velocidade_media|floatformat:2}}</th>
+                <th class=" text-center" style="width: 100px; height: 41px;">
+                    <a type="'button" class="btn btn-success btn-sm"
+                        href="{% url 'area:criar_nova_rota'%}?trabalho={{item.pk}}">Mapa</a>
+
+                </th>
+            </tr>
+            {%empty%}
+            <li>Não há trabalhos</li>
+            {%endfor%}
+        </tbody>
+    </table>
+    <div class="position-relative">
+        <nav class="position-absolute top-0 start-50 translate-middle-x">
+            {% if lista.has_other_pages %}
+            <ul class="pagination">
+                {% if lista.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ lista.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+                {% for i in lista.paginator.page_range %}
+                {% if lista.number == i %}
+                <li class="active page-item"><span class="page-link">{{ i }} </span></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if lista.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ lista.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{% extends 'modelo.html' %}
+
+{%block titulo%}Areas | GeoSensor{%endblock%}
+
+{%block content%}
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body">
+            <h4>Criar nova rota: Selecione um trabalho como base</h4>            
+        </div>       
+    </div>
+    <div>
+        {% include 'trabalho/head_trabalhos.html'%}
+        {% include 'trabalho/lista_trabalhos.html'%}
+    </div>
+</div>
+{% endblock%}

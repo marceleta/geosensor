@@ -1,0 +1,47 @@
+{% extends 'modelo.html' %}
+
+{%block titulo%} Tratores | GeoSensor {%endblock%}
+{%block content%}
+<div class="container mt-1">
+    <div>
+        <div class="card">
+            <div class="card-body">
+                <h4>Tratores</h4>
+                <a class="btn btn-primary" href="{% url 'trator:adicionar' %}" >Adicionar</a>
+            </div>
+        </div>
+        
+    </div>
+    {% if mensagem != '' %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{mensagem}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {%endif%}
+    <div>
+        <table class="table">
+            <thead class="bg-dark text-light">
+                <tr>
+                    <th>Imagem</th>
+                    <th>Modelo</th>
+                    <th>Descrição</th>
+                    <th>Ativo?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in lista %}
+                    <tr>
+                        <th><img src="/media/{{item.imagem}}" width="40" height="40"></th>
+                        <th>{{item.modelo}}</th>
+                        <th>{{item.descricao}}</th>
+                        <th><input type="checkbox" value="{{item.ativo}}"></th>
+                    </tr>
+                {%empty%}
+                    <li>Não há tratores cadastrados</li>
+                {%endfor%}
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+{%endblock%}
