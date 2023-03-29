@@ -1,0 +1,1 @@
+[{"model": "dispositivo.dispositivo", "pk": 1, "fields": {"create": "2022-03-26", "modified": "2022-03-26", "modelo": "GeoSensor 1.0", "mac": "c0:18:85:d4:57:51", "trator": 1}}, {"model": "dispositivo.dispositivo", "pk": 2, "fields": {"create": "2022-03-26", "modified": "2022-03-26", "modelo": "GeoSensor 2.0", "mac": "4e:8a:26:3e:40:e1", "trator": 2}}]
